@@ -1,9 +1,6 @@
 import img404 from 'img/img404.png';
-import { Notify } from 'notiflix';
 
-export const Page404 = () => {
-  Notify.warning('Please, click Home');
-
+const Page404 = () => {
   return (
     <div>
       <img
@@ -14,3 +11,5 @@ export const Page404 = () => {
     </div>
   );
 };
+
+export default Page404;
