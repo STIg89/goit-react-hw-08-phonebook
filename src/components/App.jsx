@@ -6,6 +6,7 @@ import { PrivateRoute } from './Routes/Private';
 import { RestrictedRoute } from './Routes/Restricted';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
+import { Spinner } from 'utils/Spinner/spinner';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -21,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Spinner />
   ) : (
     <Routes>
       <Route path="/" element={<AppBar />}>

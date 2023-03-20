@@ -1,5 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  onErrorNotify,
+  onInvalidValue,
+  onLoginError,
+} from 'utils/Notification/Notification';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -19,6 +24,9 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      if (error.response.status === 400) {
+        onInvalidValue();
+      } else onErrorNotify();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -32,6 +40,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      if (error.response.status === 400) {
+        onLoginError();
+      } else onErrorNotify();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,6 +53,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     clearAuthHeader();
   } catch (error) {
+    onInvalidValue();
     return thunkAPI.rejectWithValue(error.message);
   }
 });

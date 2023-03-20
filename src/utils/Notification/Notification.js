@@ -46,6 +46,27 @@ export const onErrorNotify = () => {
   });
 };
 
+export const onInvalidValue = () => {
+  return Notify.failure(
+    `Invalid email | password or user with this email already exists`,
+    {
+      timeout: 2000,
+      fontSize: '22px',
+      position: 'center-center',
+      cssAnimationStyle: 'zoom',
+    }
+  );
+};
+
+export const onLoginError = () => {
+  return Notify.failure(`Invalid email or password`, {
+    timeout: 2000,
+    fontSize: '22px',
+    position: 'center-center',
+    cssAnimationStyle: 'zoom',
+  });
+};
+
 Notification.propTypes = {
   name: PropTypes.string.isRequired,
 };
