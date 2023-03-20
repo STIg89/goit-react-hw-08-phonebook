@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Form, Label, Input, Button } from './ContactForm.styled';
+import { Form, Label, Input, Button } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectLoadingStatus } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectContacts, selectLoadingStatus } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 import {
   Notification,
   onSameNumberNotify,
 } from 'utils/Notification/Notification';
 
-export const ContactForm = () => {
+export const ContactsForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
@@ -38,11 +38,11 @@ export const ContactForm = () => {
     ) {
       Notification(name);
       return;
-    } else if (contacts.find(contact => contact.phone === number)) {
+    } else if (contacts.find(contact => contact.number === number)) {
       onSameNumberNotify(number);
       return;
     } else {
-      dispatch(addContact({ name, phone: number }));
+      dispatch(addContact({ name, number }));
       resetForm();
     }
   };

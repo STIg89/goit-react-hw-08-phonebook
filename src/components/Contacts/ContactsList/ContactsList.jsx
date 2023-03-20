@@ -1,13 +1,13 @@
-import { List, Item, DelButton } from './ContactList.styled';
+import { List, Item, DelButton } from './ContactsList.styled';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/contacts/operations';
 import {
   selectFilterValue,
   selectContacts,
   selectLoadingStatus,
   selectErrorStatus,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 import {
   noMatchesNotify,
   onErrorNotify,
@@ -15,7 +15,7 @@ import {
 } from 'utils/Notification/Notification';
 import { Spinner } from 'utils/Spinner/spinner';
 
-export const ContactList = () => {
+export const ContactsList = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilterValue);
   const contacts = useSelector(selectContacts);
