@@ -50,9 +50,9 @@ export const ContactsList = () => {
   return (
     <List>
       {isLoading && <Spinner />}
-      {filteredContacts().map(({ id, name, phone }) => (
+      {filteredContacts().map(({ id, name, number }) => (
         <Item key={id}>
-          {name}: {phone}
+          {name}: {number}
           <DelButton
             type="button"
             disabled={isLoading}
