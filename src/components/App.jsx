@@ -54,11 +54,3 @@ export const App = () => {
     </Routes>
   );
 };
-
-// export const App = () => {
-//   return (
-//     <>
-//       <Phonebook />
-//     </>
-//   );
-// };
